@@ -52,6 +52,7 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 onResume();
+
             }
         });
     }
