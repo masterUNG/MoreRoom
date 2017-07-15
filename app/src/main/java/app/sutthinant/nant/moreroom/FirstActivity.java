@@ -1,6 +1,7 @@
 package app.sutthinant.nant.moreroom;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -44,7 +45,21 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         //Refresh Controller
         refreshController();
 
+        //Add Controller
+        addController();
+
     }   //Main Method
+
+    private void addController() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvadd);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     private void refreshController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvRefresh);
