@@ -10,11 +10,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -35,10 +38,23 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         //Setup Constant
         setupConstant();
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        //Create Map
         createMapFragment();
 
+        //Refresh Controller
+        refreshController();
+
     }   //Main Method
+
+    private void refreshController() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvRefresh);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onResume();
+            }
+        });
+    }
 
     @Override
     protected void onResume() {
@@ -64,7 +80,9 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         Log.d("15JulyV1", "Lng ==>" + lngADouble);
 
         try {
+            mMap.clear();
             createMap();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,5 +180,16 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(latADouble, lngADouble);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
+        //Create Marker
+        createMarker(latLng, "คุณอยู่ที่นี่", R.mipmap.ic_user_marker);
+
+    }
+
+    private void createMarker(LatLng latLng, String strTitle, int intIcon) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title(strTitle);
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(intIcon));
+        mMap.addMarker(markerOptions);
     }
 } //Main Class
