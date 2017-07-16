@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         }   //if
 
 
+
         //For Lat,Lng
 
         if (requestCode == 1000) {
