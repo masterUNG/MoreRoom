@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context="app.sutthinant.nant.moreroom.MainActivity">
 
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toltop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -51,6 +52,8 @@
 
     <!--Content-->
     <ScrollView
+        android:layout_above="@+id/relBotton"
+        android:layout_below="@+id/toltop"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -115,6 +118,31 @@
 
 
             </LinearLayout>
+
+            <!--Phone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_name" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="text"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryLight" />
+
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -377,10 +405,71 @@
 
             </LinearLayout>
 
+            <!--Admin-->
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_name" />
+
+
+                <TextView
+
+                    android:text="@string/test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/h2"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
         </LinearLayout>
 
 
     </ScrollView>
 
+    <!--Botton Toobar-->
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relBotton"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <!--save-->
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_save" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="save"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/h3" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
