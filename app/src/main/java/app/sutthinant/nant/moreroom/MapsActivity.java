@@ -1,7 +1,11 @@
 package app.sutthinant.nant.moreroom;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,8 +36,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Setup Map
         setupMap();
 
+        //Back Controller
+        backController();
+
 
     }   //Main Method
+
+    private void backController() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvBack);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                intent.putExtra("Lat", latADouble);
+                intent.putExtra("Lng", lngADouble);
+                setResult(1000, intent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 
     private void setupMap() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -51,9 +78,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         myCreateMarker(latLng);
 
+        //Click on Map
+
+        clickOnMap();
 
 
     } //onMapReady
+
+    private void clickOnMap() {
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                mMap.clear();
+                myCreateMarker(latLng);
+                latADouble = latLng.latitude;
+                lngADouble = latLng.longitude;
+                Log.d("16JulyV4","Lat ==>"+ latADouble);
+                Log.d("16JulyV4","Lng ==>"+ lngADouble);
+
+            }
+        });
+    }
 
     private void myCreateMarker(LatLng latLng) {
 

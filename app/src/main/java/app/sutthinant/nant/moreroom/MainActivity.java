@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         String tag = "16JulyV1";
         Log.d(tag, "requestCode ==>" + requestCode);
 
-
+        //For Image
 
         if (requestCode == indexAnInt && resultCode == RESULT_OK) {
             Log.d(tag, "All Result OK");
@@ -162,6 +162,18 @@ public class MainActivity extends AppCompatActivity {
             }
             indexAnInt += 1;
         }   //if
+
+
+        //For Lat,Lng
+
+        if (requestCode == 1000) {
+            Log.d("16JulyV4", "Result OK");
+            MyConstant myConstant = new MyConstant();
+            latADouble = data.getDoubleExtra("Lat", myConstant.getLatADouble());
+            lngADouble = data.getDoubleExtra("Lng", myConstant.getLngADouble());
+
+            showLatLng();
+        }
 
 
     }  //OnActivityResult
