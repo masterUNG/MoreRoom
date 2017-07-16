@@ -56,6 +56,8 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                intent.putExtra("Lat", latADouble);
+                intent.putExtra("lng", lngADouble);
                 startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private Uri uri;
     private ArrayList<String> stringArrayList;
     private String[] pathImageStrings;
+    private MyConstant myConstant;
+    private boolean[] optionBoolean = new boolean[9];
+    private double latADouble, lngADouble;
 
 
     @Override
@@ -47,11 +51,79 @@ public class MainActivity extends AppCompatActivity {
         //Add Picture Controller
         addPictureController();
 
+        //Show LatLng
+        showLatLng();
+
+        //Setup Location
+        setupLocation();
+
+
+        //Aircondition controller
+        airConditionController();
+
 
     }   //Main Method
 
+    private void setupLocation() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvSetupLatLng);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("Lat", latADouble);
+                intent.putExtra("Lng", lngADouble);
+                startActivityForResult(intent, 1000);
+
+            }
+        });
+    }
+
+    private void showLatLng() {
+        TextView textView = (TextView) findViewById(R.id.txtShowLatLng);
+        textView.setText(Double.toString(latADouble) +" , " + Double.toString(lngADouble));
+    }
+
+    private void airConditionController() {
+        final String tag = "16JulyV3";
+        final ImageView imageView = (ImageView) findViewById(R.id.imvAirCondition);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[0] = !optionBoolean[0];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getAirConditionInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[0]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
     private void setupConstant() {
         stringArrayList = new ArrayList<String>();
+        MyConstant myConstant = new MyConstant();
+
+        latADouble = getIntent().getDoubleExtra("lat", myConstant.getLatADouble());
+        lngADouble = getIntent().getDoubleExtra("lng", myConstant.getLngADouble());
+
+
+        for (int i=0; i<optionBoolean.length; i+=1) {
+            optionBoolean[i] = false;
+        }
+
     }
 
     @Override

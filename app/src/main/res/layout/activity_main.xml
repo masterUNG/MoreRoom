@@ -222,6 +222,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/imvAirCondition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_aircondition_light" />
@@ -457,6 +458,33 @@
 
 
             </LinearLayout>
+
+            <!--Setup Lat,lng-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imvSetupLatLng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_user_marker" />
+
+
+                <TextView
+                    android:id="@+id/txtShowLatLng"
+                    android:paddingLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="123.00,100.455"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/h2" />
+
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
