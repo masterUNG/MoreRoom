@@ -1,15 +1,19 @@
 package app.sutthinant.nant.moreroom;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,11 +25,17 @@ public class MainActivity extends AppCompatActivity {
             R.id.imvShowPic2, R.id.imvShowPic3, R.id.imvShowPic4,};
 
     private Uri uri;
+    private ArrayList<String> stringArrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setup Constant
+        setupConstant();
+
         //Back Controller
         backController();
 
@@ -38,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   //Main Method
+
+    private void setupConstant() {
+        stringArrayList = new ArrayList<String>();
+    }
 
     @Override
     protected void onActivityResult(int requestCode,
@@ -58,11 +72,17 @@ public class MainActivity extends AppCompatActivity {
             uri = data.getData();
             try {
 
+                //Display Image
                 Bitmap bitmap = BitmapFactory
                         .decodeStream(getContentResolver().openInputStream(uri));
                 ImageView imageView = (ImageView) findViewById(picInts[indexAnInt]);
                 bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
                 imageView.setImageBitmap(bitmap);
+
+                //Find path and add ArrayList
+                stringArrayList.add(findPantImage());
+                Log.d(tag, "stringArrayList ==>" + stringArrayList);
+
 
             } catch (Exception e) {
                 Log.d(tag, "e ShowImage ==>" + e.toString());
@@ -72,6 +92,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     }  //OnActivityResult
+
+    private String findPantImage() {
+
+        String strResult = null;
+
+        String[] strings = new String[]{MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, strings, null, null, null);
+
+        if (cursor != null) {
+
+            cursor.moveToFirst();
+            int i = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            strResult = cursor.getString(i);
+
+
+        } else {
+            strResult = uri.getPath();
+        }
+
+
+        return strResult;
+    }
 
     private void addPictureController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvadd);
