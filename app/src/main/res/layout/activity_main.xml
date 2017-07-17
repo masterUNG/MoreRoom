@@ -247,7 +247,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_cctv_ligt" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -269,7 +269,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_wifi_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -291,12 +291,12 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_key_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KeyCard"
+                        android:text="Card"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
@@ -313,7 +313,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_sat_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -332,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!--Airconditon-->
+                <!--CarPark-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -344,18 +344,18 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_car_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Aircon"
+                        android:text="Parking"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
                 </LinearLayout>
 
-                <!--CCTV-->
+                <!--Motocycle-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -366,18 +366,18 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_moto_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CCTV"
+                        android:text="Moto"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
                 </LinearLayout>
 
-                <!--WIFI-->
+                <!--furniture-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -388,18 +388,18 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_sofar_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="WIFI"
+                        android:text="Furniture"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
                 </LinearLayout>
 
-                <!--KeyCard-->
+                <!--shop-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -410,24 +410,36 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_aircondition_light" />
+                        android:src="@mipmap/ic_shop_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KeyCard"
+                        android:text="Shop"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
                 </LinearLayout>
 
-                <!--Sattelite-->
+                <!--Hospital-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_hospital_light" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hospital"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/h3" />
 
 
                 </LinearLayout>
