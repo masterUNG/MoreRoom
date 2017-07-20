@@ -55,8 +55,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/relBotton"
-        android:layout_below="@+id/toltop">
+        android:layout_below="@+id/toltop"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
 
@@ -292,14 +292,15 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/imvKeyCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_key_light" />
+                        android:src="@mipmap/ic_keycard_light"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Card"
+                        android:text="KeyCard"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
@@ -344,7 +345,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imvCar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_car_light" />
@@ -367,6 +368,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/imvMotocycle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_moto_light" />
@@ -374,7 +376,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Moto"
+                        android:text="Motocycle"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/h3" />
 
@@ -389,6 +391,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/imvFurniture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_sofar_light" />
@@ -411,6 +414,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/imvSattelite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_sat_light" />

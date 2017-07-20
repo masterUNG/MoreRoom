@@ -18,9 +18,48 @@ public class MyConstant {
     }
 
     private int[] ccTvInts = new int[]{R.mipmap.ic_cctv_ligt, R.mipmap.ic_cctv_dark};
-    public int[] getCctv() {
+    public int[] getCcTvInts() {
         return ccTvInts;
     }
+
+    private int[] wiFiInts = new int[]{R.mipmap.ic_wifi_light, R.mipmap.ic_wifi_dark};
+    public int[] getWiFiInts() {
+        return wiFiInts;
+    }
+
+    private int[] carInts = new int[]{R.mipmap.ic_car_light, R.mipmap.ic_car_dark};
+    public int[] getCarInts() {
+        return carInts;
+    }
+
+    private int[] keyInts = new int[]{R.mipmap.ic_keycard_light, R.mipmap.ic_keycard_dark};
+    public int[] getKeyInts() {
+        return keyInts;
+    }
+
+    private int[] moTocycleInts = new int[]{R.mipmap.ic_moto_light, R.mipmap.ic_moto_dark};
+
+    public int[] getMoTocycleInts() {
+        return moTocycleInts;
+    }
+
+    private int[] furNiTureInts = new int[]{R.mipmap.ic_sofar_light, R.mipmap.ic_sofar_dark};
+
+    public int[] getFurNiTureInts() {
+        return furNiTureInts;
+    }
+
+    private int[] satTeliteInts = new int[]{R.mipmap.ic_sat_light, R.mipmap.ic_sat_dark};
+
+    public int[] getSatTeliteInts() {
+        return satTeliteInts;
+    }
+
+
+
+
+
+
 
     public int getIconAlert() {
         return iconAlert;

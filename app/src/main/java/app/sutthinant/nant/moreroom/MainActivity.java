@@ -61,10 +61,34 @@ public class MainActivity extends AppCompatActivity {
         //Aircondition controller
         airConditionController();
 
-        cctvcontroller();
+       //CCTV controller
+        ccTvController();
+
+        //wifi Controller
+        wiFiController();
+
+        //KeyCard Controller
+        keyCardController();
+
+        //Car Controller
+        carController();
+
+        //Motocycle Controller
+        motocycleController();
+
+        //Furniture Controller
+        furnitureController();
+
+        //Satellite Controller
+        satelliteController();
 
 
     }   //Main Method
+
+
+
+
+
 
 
 
@@ -116,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void cctvcontroller() {
+    private void ccTvController() {
 
         final ImageView imageView = (ImageView) findViewById(R.id.imvCctv);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 optionBoolean[1] = !optionBoolean[1];
                 MyConstant myConstant = new MyConstant();
 
-                int[] ints = myConstant.getCctv();
+                int[] ints = myConstant.getCcTvInts();
 
                 for (int i=0; i<ints.length; i+=1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
@@ -134,6 +158,174 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
 
                 if (optionBoolean[1]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
+    private void wiFiController() {
+
+        final ImageView imageView = (ImageView) findViewById(R.id.imvWifi);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[2] = !optionBoolean[2];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getWiFiInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[2]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+
+
+    }
+
+    private void keyCardController() {
+
+        final ImageView imageView = (ImageView) findViewById(R.id.imvKeyCard);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[3] = !optionBoolean[3];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getKeyInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[3]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
+    private void carController() {
+
+        final ImageView imageView = (ImageView) findViewById(R.id.imvCar);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[4] = !optionBoolean[4];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getCarInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[4]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+
+    }
+
+    private void motocycleController() {
+        final ImageView imageView = (ImageView) findViewById(R.id.imvMotocycle);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[5] = !optionBoolean[5];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getMoTocycleInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[5]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
+    private void furnitureController() {
+        final ImageView imageView = (ImageView) findViewById(R.id.imvFurniture);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[6] = !optionBoolean[6];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getFurNiTureInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[6]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
+    private void satelliteController() {
+        final ImageView imageView = (ImageView) findViewById(R.id.imvSattelite);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[7] = !optionBoolean[7];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getSatTeliteInts();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[7]) {
                     imageView.setImageResource(ints[1]);
                 } else {
                     imageView.setImageResource(ints[0]);
