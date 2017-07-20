@@ -61,8 +61,12 @@ public class MainActivity extends AppCompatActivity {
         //Aircondition controller
         airConditionController();
 
+        cctvcontroller();
+
 
     }   //Main Method
+
+
 
     private void setupLocation() {
         ImageView imageView = (ImageView) findViewById(R.id.imvSetupLatLng);
@@ -111,6 +115,36 @@ public class MainActivity extends AppCompatActivity {
             } // On Click
         });
     }
+
+    private void cctvcontroller() {
+
+        final ImageView imageView = (ImageView) findViewById(R.id.imvCctv);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                optionBoolean[1] = !optionBoolean[1];
+                MyConstant myConstant = new MyConstant();
+
+                int[] ints = myConstant.getCctv();
+
+                for (int i=0; i<ints.length; i+=1) {
+//                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
+                }
+
+//                Log.d(tag, "optionBooleen ==>" + optionBoolean[0]);
+
+                if (optionBoolean[1]) {
+                    imageView.setImageResource(ints[1]);
+                } else {
+                    imageView.setImageResource(ints[0]);
+
+                }
+
+            } // On Click
+        });
+    }
+
+
 
     private void setupConstant() {
         stringArrayList = new ArrayList<String>();

@@ -78,14 +78,6 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
 
-        //For Network
-        Location networkLocation = myFindLocation(LocationManager.NETWORK_PROVIDER);
-        if (networkLocation != null) {
-            latADouble = networkLocation.getLatitude();
-            lngADouble = networkLocation.getLongitude();
-
-        }
-
         //For GPS
         Location gpsLocation = myFindLocation(LocationManager.GPS_PROVIDER);
         if (gpsLocation != null) {
@@ -94,13 +86,22 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
 
         }
 
+        //For Network
+        Location networkLocation = myFindLocation(LocationManager.NETWORK_PROVIDER);
+        if (networkLocation != null) {
+            latADouble = networkLocation.getLatitude();
+            lngADouble = networkLocation.getLongitude();
+
+        }
+
+
+
         Log.d("15JulyV1", "Lat ==>" + latADouble);
         Log.d("15JulyV1", "Lng ==>" + lngADouble);
 
         try {
             mMap.clear();
             createMap();
-
 
         } catch (Exception e) {
             e.printStackTrace();
