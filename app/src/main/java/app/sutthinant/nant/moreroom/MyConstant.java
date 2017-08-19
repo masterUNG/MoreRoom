@@ -13,12 +13,17 @@ public class MyConstant {
 
     //for url
     private String urlPostRoomString = "http://www.rentroom.in.th/android/addData.php";
+    private String urlGetRoomString = "http://rentroom.in.th/android/getAllRoom.php";
 
     //for FTP
     private String hostFTPString = "ftp.rentroom.in.th";
     private String userFTPString = "nant@rentroom.in.th";
     private String passwordFTPString = "Abc12345";
     private int portAnInt = 21;
+
+    public String getUrlGetRoomString() {
+        return urlGetRoomString;
+    }
 
     public String getHostFTPString() {
         return hostFTPString;

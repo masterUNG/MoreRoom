@@ -207,7 +207,26 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         //Create Marker
         createMarker(latLng, "คุณอยู่ที่นี่", R.mipmap.ic_user_marker);
 
-    }
+        String tag = "19AugV4";
+
+
+        //Create Room Marker
+        try {
+            MyConstant myConstant = new MyConstant();
+            GetAllData getAllData = new GetAllData(FirstActivity.this);
+            getAllData.execute(myConstant.getUrlGetRoomString());
+
+            String strJSON = getAllData.get();
+            Log.d(tag, "JSON ==>" + strJSON);
+
+
+        } catch (Exception e) {
+            Log.d(tag, "e createMap ==>" + e.toString());
+
+        }
+
+
+    }      //createMap
 
     private void createMarker(LatLng latLng, String strTitle, int intIcon) {
         MarkerOptions markerOptions = new MarkerOptions();
