@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,20 +14,25 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.jibble.simpleftp.SimpleFTP;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     //Explicit
-    private String nameString, priceString, phoneString;
+    private String nameString, priceString, phoneString,
+            imageString, optionString, latString, lngString;
     private EditText nameEditText, priceEditText, phoneEditText;
     private int indexAnInt = 0;
     private int[] picInts = new int[]{R.id.imvShowPic1,
             R.id.imvShowPic2, R.id.imvShowPic3, R.id.imvShowPic4,};
 
     private Uri uri;
-    private ArrayList<String> stringArrayList;
+    private ArrayList<String> stringArrayList, nameImageArrayList, optionArrayList;
     private String[] pathImageStrings;
     private MyConstant myConstant;
     private boolean[] optionBoolean = new boolean[8];
@@ -108,7 +114,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showLatLng() {
         TextView textView = (TextView) findViewById(R.id.txtShowLatLng);
-        textView.setText(Double.toString(latADouble) + " , " + Double.toString(lngADouble));
+        String strLat = String.format("%.4f", latADouble);
+        String strLng = String.format("%.4f", lngADouble);
+
+        textView.setText("Lat =" + strLat + " , Lng =" + strLng);
     }
 
     private void airConditionController() {
@@ -117,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 optionBoolean[0] = !optionBoolean[0];
                 MyConstant myConstant = new MyConstant();
 
@@ -338,7 +348,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupConstant() {
+        //setup ArrayList
         stringArrayList = new ArrayList<String>();
+        nameImageArrayList = new ArrayList<String>();
+        optionArrayList = new ArrayList<String>();
+
 
         //Create Instance or Object
         MyConstant myConstant = new MyConstant();
@@ -347,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
         latADouble = getIntent().getDoubleExtra("Lat", myConstant.getLatADouble());
         lngADouble = getIntent().getDoubleExtra("Lng", myConstant.getLngADouble());
 
-
+        //Set Up all Boolean ==L false
         for (int i = 0; i < optionBoolean.length; i += 1) {
             optionBoolean[i] = false;
         }
@@ -472,6 +486,7 @@ public class MainActivity extends AppCompatActivity {
             //No space
 
             createArrayFromArrayList();
+            uploadValueToServer();
 
 
         }
@@ -479,11 +494,58 @@ public class MainActivity extends AppCompatActivity {
 
     } //Click Save
 
+    private void uploadValueToServer() {
+        String tab = "19AugV3";
+        latString = Double.toString(latADouble);
+        lngString = Double.toString(lngADouble);
+
+        //Show log
+        Log.d(tab, "" + nameString);
+        Log.d(tab, "" + priceString);
+        Log.d(tab, "" + phoneString);
+        Log.d(tab, "" + imageString);
+        Log.d(tab, "" + optionString);
+        Log.d(tab, "" + latString);
+        Log.d(tab, "" + lngString);
+
+        try {
+
+            PostRoomToServer postRoomToServer = new PostRoomToServer(MainActivity.this);
+            MyConstant myConstant = new MyConstant();
+            postRoomToServer.execute(
+                    nameString,
+                    priceString,
+                    phoneString,
+                    imageString,
+                    optionString,
+                    latString,
+                    lngString,
+                    myConstant.getUrlPostRoomString()
+            );
+
+            String strResult = postRoomToServer.get();
+            Log.d(tab, "Result ==>" + strResult);
+
+            if (Boolean.parseBoolean(strResult)) {
+                finish();
+            } else {
+                Toast.makeText(MainActivity.this, "Cannot Upload To Server Please Try Again",
+                        Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            Log.d(tab, "e uploadValue ==>" + e.toString());
+        }
+
+
+    }
+
     private void createArrayFromArrayList() {
 
         String tag = "16JulyV2";
         Log.d(tag, "arrayList.size ==>" + stringArrayList.size());
 
+        //About Image
         if (stringArrayList.size() != 0) {
             //Have Image
             pathImageStrings = new String[stringArrayList.size()];
@@ -491,12 +553,59 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < pathImageStrings.length; i += 1) {
                 Log.d(tag, "pathImage[" + i + "] ==L" + pathImageStrings[i]);
-            }
 
-        }
+                upLoadImageToServer(pathImageStrings[i]);
+
+                String strNameImage = pathImageStrings[i].substring(pathImageStrings[i].lastIndexOf("/"));
+                strNameImage = "http://rentroom.in.th/android/Image" + strNameImage;
+                nameImageArrayList.add(strNameImage);
+
+
+            }  //for
+
+        }   //if
+        //About Option
+
+        for (int i = 0; i < optionBoolean.length; i += 1) {
+            Log.d(tag, "optionBool[" + i + "] ==>" + optionBoolean[i]);
+            String strOption = Boolean.toString(optionBoolean[i]);
+            optionArrayList.add(strOption);
+
+        } //for
+        imageString = nameImageArrayList.toString();
+        optionString = optionArrayList.toString();
+
+        Log.d(tag, "imageString ==>" + imageString);
+        Log.d(tag, "optionString ==>" + optionString);
 
 
     } //CreateArray
+
+    private void upLoadImageToServer(String pathImageString) {
+        String tab = "19AugV2";
+
+        try {
+
+            //Change Policy
+            StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy
+                    .Builder().permitAll().build();
+            StrictMode.setThreadPolicy(threadPolicy);
+
+            //Upload to server'
+            SimpleFTP simpleFTP = new SimpleFTP();
+            MyConstant myConstant = new MyConstant();
+            simpleFTP.connect(myConstant.getHostFTPString(), myConstant.getPortAnInt(),
+                    myConstant.getUserFTPString(), myConstant.getPasswordFTPString());
+            simpleFTP.bin();
+            simpleFTP.cwd("Image");
+            simpleFTP.stor(new File(pathImageString));
+            simpleFTP.disconnect();
+
+
+        } catch (Exception e) {
+            Log.d(tab, "e upload ==>" + e.toString());
+        }
+    }
 
     private void backController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvBack);

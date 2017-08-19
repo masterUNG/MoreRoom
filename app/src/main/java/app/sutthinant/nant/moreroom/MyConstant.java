@@ -11,6 +11,34 @@ public class MyConstant {
     private double lngADouble = 100.606747; //==> Bangna Section
     private int iconAlert = R.mipmap.ic_aircondition_light;
 
+    //for url
+    private String urlPostRoomString = "http://www.rentroom.in.th/android/addData.php";
+
+    //for FTP
+    private String hostFTPString = "ftp.rentroom.in.th";
+    private String userFTPString = "nant@rentroom.in.th";
+    private String passwordFTPString = "Abc12345";
+    private int portAnInt = 21;
+
+    public String getHostFTPString() {
+        return hostFTPString;
+    }
+
+    public String getUserFTPString() {
+        return userFTPString;
+    }
+
+    public String getPasswordFTPString() {
+        return passwordFTPString;
+    }
+
+    public int getPortAnInt() {
+        return portAnInt;
+    }
+
+    public String getUrlPostRoomString() {
+        return urlPostRoomString;
+    }
 
     private int[] airConditionInts = new int[]{R.mipmap.ic_aircondition_light, R.mipmap.ic_aircondition_dark};
     public int[] getAirConditionInts() {
