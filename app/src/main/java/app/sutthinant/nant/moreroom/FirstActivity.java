@@ -22,6 +22,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class FirstActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -29,6 +32,8 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
     private Criteria criteria;
     private double latADouble, lngADouble;
     private MyConstant myConstant;
+    private String[] nameStrings, priceStrings, phoneStrings, imageStrings, optionStrings,
+            latStrings, lngStrings, roomStrings, idStrings;
 
 
     @Override
@@ -97,7 +102,6 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
             lngADouble = networkLocation.getLongitude();
 
         }
-
 
 
         Log.d("15JulyV1", "Lat ==>" + latADouble);
@@ -180,7 +184,6 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         lngADouble = myConstant.getLngADouble();
 
 
-
     }
 
     private void createMapFragment() {
@@ -219,6 +222,41 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
             String strJSON = getAllData.get();
             Log.d(tag, "JSON ==>" + strJSON);
 
+            JSONArray jsonArray = new JSONArray(strJSON);
+            idStrings = new String[jsonArray.length()];
+            nameStrings = new String[jsonArray.length()];
+            priceStrings = new String[jsonArray.length()];
+            phoneStrings = new String[jsonArray.length()];
+            imageStrings = new String[jsonArray.length()];
+            optionStrings = new String[jsonArray.length()];
+            latStrings = new String[jsonArray.length()];
+            lngStrings = new String[jsonArray.length()];
+            roomStrings = new String[jsonArray.length()];
+
+            for (int i = 0; i < jsonArray.length(); i += 1) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                nameStrings[i] = jsonObject.getString("id");
+                nameStrings[i] = jsonObject.getString("Name");
+                priceStrings[i] = jsonObject.getString("Price");
+                phoneStrings[i] = jsonObject.getString("Phone");
+                imageStrings[i] = jsonObject.getString("Image");
+                optionStrings[i] = jsonObject.getString("Option");
+                latStrings[i] = jsonObject.getString("Lat");
+                lngStrings[i] = jsonObject.getString("Lng");
+                roomStrings[i] = jsonObject.getString("Room");
+
+                double doulat = Double.parseDouble(latStrings[i]);
+                double doulng = Double.parseDouble(lngStrings[i]);
+                LatLng latLng1 = new LatLng(doulat, doulng);
+
+                int[] iconInts = myConstant.getRoomInts();
+                int intdex = Integer.parseInt(roomStrings[i]);
+
+                createMarker(latLng1, nameStrings[i], iconInts[intdex]);
+
+
+            }  //for
 
         } catch (Exception e) {
             Log.d(tag, "e createMap ==>" + e.toString());

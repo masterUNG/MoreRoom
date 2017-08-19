@@ -10,6 +10,8 @@ public class MyConstant {
     private double latADouble = 13.673279;
     private double lngADouble = 100.606747; //==> Bangna Section
     private int iconAlert = R.mipmap.ic_aircondition_light;
+    private int[] roomInts = new int[]{R.mipmap.ic_blank, R.mipmap.ic_one, R.mipmap.ic_two,
+            R.mipmap.ic_three};
 
     //for url
     private String urlPostRoomString = "http://www.rentroom.in.th/android/addData.php";
@@ -20,6 +22,10 @@ public class MyConstant {
     private String userFTPString = "nant@rentroom.in.th";
     private String passwordFTPString = "Abc12345";
     private int portAnInt = 21;
+
+    public int[] getRoomInts() {
+        return roomInts;
+    }
 
     public String getUrlGetRoomString() {
         return urlGetRoomString;
