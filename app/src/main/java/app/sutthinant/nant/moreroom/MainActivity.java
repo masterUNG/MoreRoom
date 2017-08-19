@@ -317,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 optionBoolean[7] = !optionBoolean[7];
                 MyConstant myConstant = new MyConstant();
 
+
                 int[] ints = myConstant.getSatTeliteInts();
 
                 for (int i=0; i<ints.length; i+=1) {
