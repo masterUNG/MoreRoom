@@ -27,12 +27,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //Get Value From Inten
-        MyConstant myConstant = new MyConstant();
-        latADouble = getIntent().getDoubleExtra("Lat", myConstant.getLngADouble());
-        lngADouble = getIntent().getDoubleExtra("Lng", myConstant.getLngADouble());
-
-
         // Setup Map
         setupMap();
 
@@ -41,6 +35,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }   //Main Method
+
+    private void getValueFromIntent() {
+        MyConstant myConstant = new MyConstant();
+        latADouble = getIntent().getDoubleExtra("Lat", myConstant.getLngADouble());
+        lngADouble = getIntent().getDoubleExtra("Lng", myConstant.getLngADouble());
+
+        Log.d("19AugV1", "Lat Map ==> " + latADouble);
+        Log.d("19AugV1", "Lng Map ==> " + lngADouble);
+    }
 
     private void backController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvBack);
@@ -72,6 +75,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        //Get Value From Inten
+        getValueFromIntent();
+
+        Log.d("19AugV1", "Lat onMap ==> " + latADouble);
+        Log.d("19AugV1", "Lng onMap ==> " + lngADouble);
 
         LatLng latLng = new LatLng(latADouble, lngADouble);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));

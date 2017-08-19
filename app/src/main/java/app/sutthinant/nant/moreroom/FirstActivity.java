@@ -55,9 +55,13 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.d("19AugV1", "Lat First ==> " + latADouble);
+                Log.d("19AugV1", "Lng First ==> " + lngADouble);
+
                 Intent intent = new Intent(FirstActivity.this, MainActivity.class);
                 intent.putExtra("Lat", latADouble);
-                intent.putExtra("lng", lngADouble);
+                intent.putExtra("Lng", lngADouble);
                 startActivity(intent);
             }
         });
@@ -165,6 +169,7 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
     };
 
     private void setupConstant() {
+
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
