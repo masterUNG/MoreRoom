@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> stringArrayList;
     private String[] pathImageStrings;
     private MyConstant myConstant;
-    private boolean[] optionBoolean = new boolean[9];
+    private boolean[] optionBoolean = new boolean[8];
     private double latADouble, lngADouble;
 
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //Aircondition controller
         airConditionController();
 
-       //CCTV controller
+        //CCTV controller
         ccTvController();
 
         //wifi Controller
@@ -86,12 +86,6 @@ public class MainActivity extends AppCompatActivity {
     }   //Main Method
 
 
-
-
-
-
-
-
     private void setupLocation() {
         ImageView imageView = (ImageView) findViewById(R.id.imvSetupLatLng);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 intent.putExtra("Lat", latADouble);
                 intent.putExtra("Lng", lngADouble);
+
+                Log.d("19AugV1", "Lat Main ==> " + latADouble);
+                Log.d("19AugV1", "Lng Main ==> " + lngADouble);
+
+
                 startActivityForResult(intent, 1000);
 
             }
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showLatLng() {
         TextView textView = (TextView) findViewById(R.id.txtShowLatLng);
-        textView.setText(Double.toString(latADouble) +" , " + Double.toString(lngADouble));
+        textView.setText(Double.toString(latADouble) + " , " + Double.toString(lngADouble));
     }
 
     private void airConditionController() {
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getAirConditionInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -151,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getCcTvInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getWiFiInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -209,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getKeyInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -237,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getCarInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -265,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getMoTocycleInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -292,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getFurNiTureInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -320,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int[] ints = myConstant.getSatTeliteInts();
 
-                for (int i=0; i<ints.length; i+=1) {
+                for (int i = 0; i < ints.length; i += 1) {
 //                    Log.d(tag, "ints[" + i + "] ==>" + ints[i]);
                 }
 
@@ -338,20 +337,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void setupConstant() {
         stringArrayList = new ArrayList<String>();
+
+        //Create Instance or Object
         MyConstant myConstant = new MyConstant();
 
-        latADouble = getIntent().getDoubleExtra("lat", myConstant.getLatADouble());
-        lngADouble = getIntent().getDoubleExtra("lng", myConstant.getLngADouble());
+        //Get Value From Intent
+        latADouble = getIntent().getDoubleExtra("Lat", myConstant.getLatADouble());
+        lngADouble = getIntent().getDoubleExtra("Lng", myConstant.getLngADouble());
 
 
-        for (int i=0; i<optionBoolean.length; i+=1) {
+        for (int i = 0; i < optionBoolean.length; i += 1) {
             optionBoolean[i] = false;
         }
 
-    }
+    }   // setUpConstant
 
     @Override
     protected void onActivityResult(int requestCode,
@@ -389,7 +390,6 @@ public class MainActivity extends AppCompatActivity {
             }
             indexAnInt += 1;
         }   //if
-
 
 
         //For Lat,Lng
@@ -441,7 +441,7 @@ public class MainActivity extends AppCompatActivity {
                             indexAnInt);
                 } else {
                     MyAlert myAlert = new MyAlert(MainActivity.this);
-                    myAlert.myDialog("Over Picture", "Can't Add More"+ Integer.toString(picInts.length)+"Pic");
+                    myAlert.myDialog("Over Picture", "Can't Add More" + Integer.toString(picInts.length) + "Pic");
                 }
 
             }
@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity {
         phoneString = phoneEditText.getText().toString().trim();
 
         //Check Space
-        if (nameString.equals("")||priceString.equals("")||phoneString.equals("")) {
+        if (nameString.equals("") || priceString.equals("") || phoneString.equals("")) {
             //Have Space
             MyAlert myAlert = new MyAlert(MainActivity.this);
             myAlert.myDialog(getString(R.string.title_have_space),
@@ -475,7 +475,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-
 
 
     } //Click Save
@@ -490,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
             pathImageStrings = new String[stringArrayList.size()];
             pathImageStrings = stringArrayList.toArray(new String[0]);
 
-            for (int i=0;i<pathImageStrings.length; i+=1) {
+            for (int i = 0; i < pathImageStrings.length; i += 1) {
                 Log.d(tag, "pathImage[" + i + "] ==L" + pathImageStrings[i]);
             }
 
