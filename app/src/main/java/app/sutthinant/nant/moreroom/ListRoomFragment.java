@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  * Created by masterung on 8/26/2017 AD.
  */
 
-public class ListRoomFragment extends Fragment{
+public class ListRoomFragment extends Fragment {
 
     @Nullable
     @Override
@@ -41,6 +44,7 @@ public class ListRoomFragment extends Fragment{
         MyConstant myConstant = new MyConstant();
         String strURL = myConstant.getUrlGetRoomString();
         String tag = "26AugV1";
+        String[] columnRoomTable = myConstant.getColumnRoomTable();
 
         try {
 
@@ -49,13 +53,62 @@ public class ListRoomFragment extends Fragment{
             String strJSON = getAllData.get();
             Log.d(tag, "JSoN ==> " + strJSON);
 
+            JSONArray jsonArray = new JSONArray(strJSON);
+
+            String[] idStrings = new String[jsonArray.length()];
+            String[] nameStrings = new String[jsonArray.length()];
+            String[] priceStrings = new String[jsonArray.length()];
+            String[] phoneStrings = new String[jsonArray.length()];
+            String[] imageStrings = new String[jsonArray.length()];
+            String[] optionStrings = new String[jsonArray.length()];
+            String[] latStrings = new String[jsonArray.length()];
+            String[] lngStrings = new String[jsonArray.length()];
+            String[] roomStrings = new String[jsonArray.length()];
+            String[] firstImageStrings = new String[jsonArray.length()];
+
+            for (int i = 0; i < jsonArray.length(); i += 1) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                idStrings[i] = jsonObject.getString(columnRoomTable[0]);
+                nameStrings[i] = jsonObject.getString(columnRoomTable[1]);
+                priceStrings[i] = jsonObject.getString(columnRoomTable[2]);
+                phoneStrings[i] = jsonObject.getString(columnRoomTable[3]);
+                imageStrings[i] = jsonObject.getString(columnRoomTable[4]);
+
+                firstImageStrings[i] = findImage(imageStrings[i]);
+
+                optionStrings[i] = jsonObject.getString(columnRoomTable[5]);
+                latStrings[i] = jsonObject.getString(columnRoomTable[6]);
+                lngStrings[i] = jsonObject.getString(columnRoomTable[7]);
+                roomStrings[i] = jsonObject.getString(columnRoomTable[8]);
+
+            }   //for
+
+            RoomListViewAdapter roomListViewAdapter = new RoomListViewAdapter(getActivity(),
+                    firstImageStrings, nameStrings, priceStrings);
+            listView.setAdapter(roomListViewAdapter);
+
         } catch (Exception e) {
             Log.d(tag, "e createListview ==> " + e.toString());
         }
 
 
-
     }   // createListView
+
+    private String findImage(String strArrayList) {
+
+        String strResult = null;
+        String tag = "26AugV2";
+        int allDigi = strArrayList.length();
+        Log.d(tag, "allDigi ==> " + allDigi);
+        strResult = strArrayList.substring(1, (allDigi-1));
+        Log.d(tag, "strResult1 ==> " + strResult);
+        String[] strings = strResult.split(",");
+        Log.d(tag, "strings[0] ==> " + strings[0]);
+
+
+        return strings[0];
+    }
 
     private void createToolBar() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarListRoom);

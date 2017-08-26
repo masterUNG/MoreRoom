@@ -1,6 +1,7 @@
 package app.sutthinant.nant.moreroom;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,14 @@ public class RoomListViewAdapter extends BaseAdapter{
         View view1 = layoutInflater.inflate(R.layout.room_listview_layout, viewGroup, false);
 
         //For Image
-        ImageView imageView = view1.findViewById(R.id.imvIcon);
-        Picasso.with(context).load(iconStrings[i]).into(imageView);
+        try {
+
+            ImageView imageView = view1.findViewById(R.id.imvIcon);
+            Picasso.with(context).load(iconStrings[i]).into(imageView);
+
+        } catch (Exception e) {
+            Log.d("26AugV2", "e Adapter ==> " + e.toString());
+        }
 
         //For Text
         TextView nameTextView = view1.findViewById(R.id.txtName);

@@ -12,6 +12,16 @@ public class MyConstant {
     private int iconAlert = R.mipmap.ic_aircondition_light;
     private int[] roomInts = new int[]{R.mipmap.ic_blank, R.mipmap.ic_one, R.mipmap.ic_two,
             R.mipmap.ic_three};
+    private String[] columnRoomTable = new String[]{
+            "id",
+            "Name",
+            "Price",
+            "Phone",
+            "Image",
+            "Option",
+            "Lat",
+            "Lng",
+            "Room"};
 
     //for url
     private String urlPostRoomString = "http://www.rentroom.in.th/android/addData.php";
@@ -22,6 +32,11 @@ public class MyConstant {
     private String userFTPString = "nant@rentroom.in.th";
     private String passwordFTPString = "Abc12345";
     private int portAnInt = 21;
+
+
+    public String[] getColumnRoomTable() {
+        return columnRoomTable;
+    }
 
     public int[] getRoomInts() {
         return roomInts;
