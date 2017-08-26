@@ -59,13 +59,86 @@
 
     <!--Drawer Menu-->
     <LinearLayout
-        android:background="#ffffff"
+        android:background="#64ffffff"
         android:layout_gravity="start"
         android:orientation="vertical"
         android:layout_width="320dp"
         android:layout_height="match_parent">
 
         <!--Add Room-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Icon-->
+            <ImageView
+                android:src="@mipmap/ic_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/txtAddRoomDrawer"
+                android:clickable="true"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/add_room"
+                android:textSize="@dimen/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!--Refresh-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Icon-->
+            <ImageView
+                android:src="@mipmap/ic_refesh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/txtRefreshDrawer"
+                android:clickable="true"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="Refresh Location"
+                android:textSize="@dimen/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!--List Room-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Icon-->
+            <ImageView
+                android:src="@mipmap/ic_hospital_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/txtListRoomDrawer"
+                android:clickable="true"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="List Room"
+                android:textSize="@dimen/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -67,7 +68,50 @@ public class FirstActivity extends AppCompatActivity implements OnMapReadyCallba
         //Add Controller
         addController();
 
+        //Add Room Drawer
+        addRoomDrawer();
+
+        //Refresh Drawer
+        refreshDrawer();
+
+        //List Room Drawer
+        listRoomDrawer();
+
     }   //Main Method
+
+    private void listRoomDrawer() {
+        TextView textView = (TextView) findViewById(R.id.txtListRoomDrawer);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, ListRoomActivity.class);
+                startActivity(intent);
+                drawerLayout.closeDrawers();
+            }
+        });
+    }
+
+    private void refreshDrawer() {
+        TextView textView = (TextView) findViewById(R.id.txtRefreshDrawer);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onResume();
+                drawerLayout.closeDrawers();
+            }
+        });
+    }
+
+    private void addRoomDrawer() {
+        TextView textView = (TextView) findViewById(R.id.txtAddRoomDrawer);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myIntentToMain();
+                drawerLayout.closeDrawers();
+            }
+        });
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,12 +163,16 @@ public class FirstActivity extends AppCompatActivity implements OnMapReadyCallba
                 Log.d("19AugV1", "Lat First ==> " + latADouble);
                 Log.d("19AugV1", "Lng First ==> " + lngADouble);
 
-                Intent intent = new Intent(FirstActivity.this, MainActivity.class);
-                intent.putExtra("Lat", latADouble);
-                intent.putExtra("Lng", lngADouble);
-                startActivity(intent);
+                myIntentToMain();
             }
         });
+    }
+
+    private void myIntentToMain() {
+        Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+        intent.putExtra("Lat", latADouble);
+        intent.putExtra("Lng", lngADouble);
+        startActivity(intent);
     }
 
     private void refreshController() {
