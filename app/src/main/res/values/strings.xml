@@ -8,4 +8,8 @@
     <string name="title_have_space">Have Space</string>
     <string name="message_have_space">Please Fill All Every Blank</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+
 </resources>

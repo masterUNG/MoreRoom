@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class FirstActivity extends FragmentActivity implements OnMapReadyCallback {
+public class FirstActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private LocationManager locationManager;
@@ -66,9 +67,16 @@ public class FirstActivity extends FragmentActivity implements OnMapReadyCallbac
     }   //Main Method
 
     private void initialView() {
-        drawerLayout = findViewById(R.id.drawerFirst);
-        toolbar = findViewById(R.id.toolBarFirst);
-    }
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerFirst);
+        toolbar = (Toolbar) findViewById(R.id.toolBarFirst);
+        setSupportActionBar(toolbar);
+
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+    }   // initialView
 
     private void addController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvadd);
